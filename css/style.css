@@ -6,6 +6,9 @@
     font-weight: bold;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   font-family: 'Roboto Mono', monospace;
@@ -36,11 +39,24 @@ a {
   text-decoration: none;
 }
 
+blockquote {
+  margin: 0;
+  line-height: 32px;
+  padding: 30px 0;
+}
+
+
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+
+
 .personal-info{
   width: 100%;
 }
 
-.introduction .content-right {
+#introduction .content-right {
   align-items: flex-end;
 }
 
@@ -50,11 +66,16 @@ a {
 } 
 
 /* Non-Flexbox Related Styles */
+.c-header{
+  border-top: 1px solid black;
+}
+
+
 .c-header,
 .c-footer {
   background: #EDD382;
   text-align: center;
-  padding: 2em;
+  padding: 2em 0;
   font-size: 1.4em;
   font-weight: 300;
   line-height: 1.6em;
@@ -143,12 +164,12 @@ header .container{
 }
 
 
-.introduction .container{
+#introduction .container{
      align-items:center;
      justify-content: flex-end;
 }
 
-.introduction .content-right{
+#introduction .content-right{
   max-width: 70%;
 }
 
@@ -174,19 +195,16 @@ header .container{
     height: auto;
 }
 
-
-
-img {
-    vertical-align: middle;
-    border-style: none;
-}
-
 .avatar {
     width: 100%;
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 100px;
 }
+
+
+
+
 
 
 
@@ -222,11 +240,19 @@ img {
 }
 
 
-.nav .container {
-  justify-content: flex-end;
+
+#nav{
+  z-index: 1000;
+  margin-top: -30px;
 }
 
-.nav .content-right {
+
+#nav .container {
+  justify-content: flex-end;
+  padding:0 2%;
+}
+
+#nav .content-right {
   align-items: flex-end;
   max-width: 70%;
 }
@@ -249,11 +275,40 @@ img {
   display: block;
   padding: 1em;
   color: #333;
+  font-size: 15px;
+  padding-top:10px;
+  padding-bottom: 10px;
+}
+
+.navigation li:first-child a {
+  padding-left:0;
 }
 
 .navigation a:hover {
   color: #000;
 }
+
+.logomark{
+  display: none;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+#nav.sticky {
+  background-color: #fafafa;
+  margin-top: 0;
+  transition: background-color 0.2s ease-in-out;
+}
+
+#nav.sticky .logomark {
+  display: block;
+}
+
+
 
 @media all and (max-width: 800px) {
   .navigation {
@@ -279,5 +334,11 @@ img {
   .navigation li:last-of-type a {
     border-bottom: none;
   }
+}
+
+
+#education, #experience, #skills, #languages {
+  margin-top: -60px;
+  padding:80px 0;
 }
 

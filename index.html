@@ -30,46 +30,48 @@
           30/06/1998
         </div>
       </div>
-    </div>  
+    </div>
+    <div id="nav">
+      <div class="container">
+        <div class="column-left">
+            <img src="images/logomark.png" class="logomark" width="30">
+        </div> 
+        <div class="content-right">
+          <ul class="navigation">
+            <li><a href="#education">Education</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#language">Language</a></li>
+            <li><a href="#skills">Skills</a></li>
+          </ul>
+        </div>   
+      </div>  
+</div>  
 </header>
 
-<section class="nav">
-    <div class="container">
-      <div class="content-right">
-        <ul class="navigation">
-          <li><a href="#introduction">Home</a></li>
-          <li><a href="#education">About</a></li>
-          <li><a href="#">Products</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </div>   
-    </div>  
-</section>
 
-<section class="introduction">
+
+<section id="introduction">
     <div class="container">
       <div class="content-right">
-        <div class="quotes">
-          Design must be coherent, visually appealing and chiefly functional. Merging my love for design with my passion for development, is my way to achieve unique digital experiences.
-        </div>
+        <blockquote cite="http://patriciotorello.com/">
+Design must be coherent, visually appealing and chiefly functional. Merging my love for design with my passion for development, is my way to achieve unique digital experiences.
+</blockquote>
       </div>  
     </div>  
 </section>
 
 
-<section class="education">
+<section id="education">
     <div class="container">
 
       <div class="column-left">
-        <h2>div Title Here</h2>
-        <p>Hydrogen stratosphere control tower capacitor Saturn Lalande 21185. Control tower x-rays Luhman 16 Banard's Star engine lunar. Horizon engine capture Pluto Brahe sun continuum ion-drive control tower Proxima Centauri space-time booster. Core horizon subspace Voyager coordinates water. Contractors Banard's Star nozzle time Orion weightless Gemini extra-vehicular explore.</p>
-        <p><a href="#" class="c-btn">Read More</a></p>
+        <h2>Education</h2>
       </div>
 
       <div class="content-right">
         <article>
-          <h2>Article Title Here</h2>
-          <p>Mars NASA subspace crew warp Herschel stratosphere. Saturn sky zero-g stratosphere fuel cell Venus grounded crew yaw Ptolemy Challenger. Pioneer stratosphere Cassini Lalande 21185 Earth telemetry. Galileo uranium jumpsuit warp Hawking.</p>
+          <h2>SCAD (Savannah College of Art & Design)</h2>
+          <p>Bachelor of Fine Arts, Graphic Design, Graduated, GPA: 3.64, 2013</p>
           <p><a href="#" class="c-btn">Read More</a></p>
         </article>
  
@@ -100,11 +102,11 @@
     </div>  
 </section>
 
-<section class="education">
+<section id="experience">
     <div class="container">
 
       <div class="column-left">
-        <h2>div Title Here</h2>
+        <h2>div Tiasdasd Here</h2>
         <p>Hydrogen stratosphere control tower capacitor Saturn Lalande 21185. Control tower x-rays Luhman 16 Banard's Star engine lunar. Horizon engine capture Pluto Brahe sun continuum ion-drive control tower Proxima Centauri space-time booster. Core horizon subspace Voyager coordinates water. Contractors Banard's Star nozzle time Orion weightless Gemini extra-vehicular explore.</p>
         <p><a href="#" class="c-btn">Read More</a></p>
       </div>
@@ -129,6 +131,23 @@
 <footer class="c-footer">
   <p>Ipsum provided by <a href="http://interstellaripsum.com?ref=codepen?pen=wWWmNB" target="_blank">InterstellarIpsum.com</a></p>
 </footer>
+
+<script type="text/javascript">
+  
+window.onscroll = function() {myFunction()};
+
+var navbar = document.getElementById("nav");
+var sticky = navbar.offsetTop;
+
+function myFunction() {
+  if (window.pageYOffset >= 390) {
+    navbar.classList.add("sticky")
+  } else {
+    navbar.classList.remove("sticky");
+  }
+}
+
+</script>
   
   
 
