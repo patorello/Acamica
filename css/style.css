@@ -6,6 +6,18 @@
     font-weight: bold;
 }
 
+@font-face {
+    font-family: 'apercu';
+    src: url('../fonts/apercu/apercupro-regular/apercu_regular_pro.otf');
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: 'apercu';
+    src: url('../fonts/apercu/apercupro-medium/apercu_medium_pro.otf');
+    font-weight: 400;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -23,10 +35,16 @@ h1 {
 }
 
 h2 {
-  font-size: 1.5em;
-  font-weight: normal;
+  font-size: 18px;
+  font-weight: 500;
   margin-bottom: 0;
   margin-top: 0;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-weight: 500;
+  margin: 0;
 }
 
 p {
@@ -42,7 +60,11 @@ a {
 blockquote {
   margin: 0;
   line-height: 32px;
-  padding: 30px 0;
+  padding: 45px 0 0px 0;
+  font-weight: 400;
+  font-family: 'apercu';
+  font-size:16px;
+  color: #333;
 }
 
 
@@ -51,6 +73,41 @@ img {
     border-style: none;
 }
 
+article {
+  margin-bottom: 30px;
+}
+
+#honors article {
+  margin-bottom: 10px;
+}
+
+
+article p {
+    margin-top: 4px;
+    line-height: 26px;
+    font-family: 'apercu';
+    color:#333;
+    font-weight: 300;
+}
+
+#languages article {
+  float: left;
+}
+
+#languages article h3{
+  margin-right: 30px;
+}
+
+i {
+  margin-right: 4px;
+}
+
+.city {
+  font-family: 'apercu';
+  font-weight: 300;
+  font-size: 18px;
+  margin-left: 2px;
+}
 
 .personal-info{
   width: 100%;
@@ -278,6 +335,8 @@ header .container{
   font-size: 15px;
   padding-top:10px;
   padding-bottom: 10px;
+  font-family: 'apercu';
+  font-weight: 300;
 }
 
 .navigation li:first-child a {
@@ -308,7 +367,9 @@ header .container{
   display: block;
 }
 
-
+#nav.sticky .navigation {
+  margin-top: 5px;
+}
 
 @media all and (max-width: 800px) {
   .navigation {
@@ -339,6 +400,6 @@ header .container{
 
 #education, #experience, #skills, #languages {
   margin-top: -60px;
-  padding:80px 0;
+  padding: 80px 0 0 0;
 }
 
