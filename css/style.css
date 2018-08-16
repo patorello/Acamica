@@ -422,26 +422,8 @@ article p {
 
 
 
-@media all and (max-width: 600px) {
-  .content-right {
-    flex-basis: 100%;
-  }
-  
-  .column-left {
-    flex-basis: 100%;
-  }
-}
-@media all and (min-width: 1000px) {
-  .content-right {
-    flex-basis: 80%;
-  }
-  
-  .column-left {
-    flex-basis: 20%;
-    direction: rtl;
-    justify-content: flex-end;
-  }
-}
+
+
 @media all and (min-width: 1400px) {
   .content-right {
     flex-basis: 70%;
@@ -452,6 +434,15 @@ article p {
   }
 }
 
+@media all and (max-width: 600px) {
+  .content-right {
+    flex-basis: 100%;
+  }
+  
+  .column-left {
+    flex-basis: 100%;
+  }
+}
 
 
 
