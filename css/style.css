@@ -75,6 +75,7 @@ blockquote {
 img {
     vertical-align: middle;
     border-style: none;
+    max-width: 100%;
 }
 
 i {
@@ -171,6 +172,7 @@ header .container{
   
   .column-left {
     flex-basis: 30%;
+    text-align: right;
   }
 }
 
@@ -360,7 +362,7 @@ header .container{
   }
 
   .navigation li {
-    width: 25%;
+    width: 20%;
   }
 
   .navigation li:first-child a {
@@ -491,6 +493,36 @@ article p {
   }
 
 
+}
+
+  .image-grid {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+
+  .cell img {
+    margin-bottom: 15px;
+    padding:0 15px 0 0;
+  }
+
+
+@media screen and (max-width: 999px) {
+  .cell {
+    width: 100%;
+  }
+  
+  .cell img {
+    display: block;
+    padding: 0;
+  }
+
+}
+
+@media screen and (min-width: 1000px) {
+  .cell {
+    width: calc(100% / 3);
+  }
 }
 
 
