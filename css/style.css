@@ -35,7 +35,7 @@ h1 {
 }
 
 h2 {
-  font-size: 18px;
+  font-size: 1.11rem;
   font-weight: 500;
   margin-bottom: 0;
   margin-top: 0;
@@ -57,13 +57,17 @@ a {
   text-decoration: none;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 blockquote {
   margin: 0;
   line-height: 32px;
   padding: 45px 0 0px 0;
   font-weight: 400;
   font-family: 'apercu';
-  font-size:16px;
+  font-size:1rem;
   color: #333;
 }
 
@@ -136,7 +140,7 @@ header .container{
 
 
 
-@media all and (min-width: 600px) {
+@media all and (min-width: 999px) {
   .content-right {
     flex-basis: 50%;
     padding-right: 5%;
@@ -145,8 +149,10 @@ header .container{
   .column-left {
     flex-basis: 100%;
   }
+
 }
-@media all and (min-width: 1000px) {
+
+/*@media all and (min-width: 1000px) {
   .content-right {
     flex-basis: 70%;
   }
@@ -156,8 +162,9 @@ header .container{
     direction: rtl;
     justify-content: flex-end;
   }
-}
-@media all and (min-width: 1400px) {
+}*/
+
+@media all and (min-width: 1000px) {
   .content-right {
     flex-basis: 70%;
   }
@@ -214,10 +221,6 @@ header .container{
 
 .c-footer p {
   font-weight: 300;
-}
-
-* {
-  box-sizing: border-box;
 }
 
 
@@ -308,10 +311,6 @@ header .container{
   color: #000;
 }
 
-.logomark{
-  display: none;
-}
-
 .sticky {
   position: fixed;
   top: 0;
@@ -324,78 +323,76 @@ header .container{
   transition: background-color 0.2s ease-in-out;
 }
 
-#nav.sticky .logomark {
-  display: block;
-}
 
 #nav.sticky .navigation {
   margin-top: 5px;
 }
 
-@media all and (max-width: 800px) {
+/*@media all and (max-width: 800px) {
   .navigation {
     justify-content: space-around;
   }
-}
+}*/
 
-@media all and (max-width: 600px) {
+@media all and (max-width: 999px) {
   .navigation {
-    -webkit-flex-flow: column wrap;
-    flex-flow: column wrap;
-    padding: 0;
+    -webkit-flex-flow: row wrap;
+    flex-flow: row wrap;;
+    padding: 30px 0 0 0;
   }
   
+  #nav.sticky .navigation {
+    padding: 0;
+    margin-top: 0;
+  }
+
   .navigation a { 
     text-align: center; 
     padding: 10px;
-    border-top: 1px solid rgba(255,255,255,0.3); 
-    border-bottom: 1px solid rgba(0,0,0,0.1); 
   }
 
+  #nav.sticky .navigation a {
+    border-right:1px solid #e0e0e0;
+  }
+
+  #nav.sticky .navigation li:last-of-type a {
+    border-right: none;
+  }
+
+  .navigation li {
+    width: 25%;
+  }
+
+  .navigation li:first-child a {
+    padding: 10px;
+  }
   
   .navigation li:last-of-type a {
-    border-bottom: none;
+    border-right: none;
+  }
+
+  .textlinks {
+    display: none;
+  }
+
+}
+
+
+@media all and (max-width: 999px) and (min-width: 780px) {
+
+    .textlinks {
+    display: inline-block;
   }
 }
 
 
 
-
-
-
-
-
-#languages article {
-  float: left;
-}
-
-#languages article h3{
-  margin-right: 30px;
-}
-
-.city {
-  font-family: 'apercu';
-  font-weight: 300;
-  font-size: 18px;
-  margin-left: 2px;
-}
-
-.personal-info{
-  width: 100%;
-}
-
-#introduction .content-right {
-  align-items: flex-end;
-}
+/* Sections */
 
 
 
 article {
   margin-bottom: 30px;
-}
-
-#honors article {
-  margin-bottom: 10px;
 }
 
 
@@ -408,40 +405,83 @@ article p {
 }
 
 
+#introduction .content-right {
+  align-items: flex-end;
+}
+
 #education, #experience, #skills, #languages {
   margin-top: -60px;
   padding: 80px 0 0 0;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-@media all and (min-width: 1400px) {
-  .content-right {
-    flex-basis: 70%;
-  }
-  
-  .column-left {
-    flex-basis: 30%;
-  }
+.city {
+  font-family: 'apercu';
+  font-weight: 300;
+  font-size: 1rem;
+  margin-left: 2px;
 }
 
-@media all and (max-width: 600px) {
+.personal-info{
+  width: 100%;
+}
+
+
+#languages article {
+  float: left;
+}
+
+#languages article h3{
+  margin-right: 30px;
+}
+
+#honors article {
+  margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+
+@media all and (max-width: 999px) {
   .content-right {
     flex-basis: 100%;
   }
   
   .column-left {
     flex-basis: 100%;
+    text-align: left;
+    padding: 0;
+    margin-bottom: 30px;
+    margin-top: 60px;
   }
+
+  .container {
+    padding: 0 5%;
+  }
+
+  .avatar {
+    max-width: 50%;
+    margin-bottom: 30px;
+  }
+
+  .c-header, .c-footer {
+    padding: 1em 0 0;
+    font-size: 1.2em;
+  }
+
+  #nav .content-right {
+    align-items: flex-start;
+    max-width: 100%;
+  }
+
+  #introduction .content-right {
+    max-width: 100%;
+  }
+
+
 }
 
 
