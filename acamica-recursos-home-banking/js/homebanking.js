@@ -27,20 +27,39 @@ window.onload = function() {
 //Funciones que tenes que completar
 
 function sumarDinero (dinero){
-	var suma = saldoCuenta + dinero;
+	var suma = saldoCuenta + parseInt(dinero);
 	saldoCuenta = suma;
 }
 
 function restarDinero (dinero){
-	var resta = saldoCuenta - dinero;
+	var resta = saldoCuenta - parseInt(dinero);
 	saldoCuenta = resta;
 }
 
+
+function validacion (parametro) {
+	if (typeof parametro == "object" || typeof parametro == "undefined" || isNaN(parametro) || parametro === "" ) {
+		return false;
+	} else {
+		var numeroachequear = parseInt (parametro);
+		if (typeof numeroachequear == "number") {
+			return true;
+		} else {
+			return false;
+		}
+	}
+}
+
+
 function cambiarLimiteDeExtraccion() {
-	var nuevoLimite = parseInt(prompt("Ingrese nuevo limite de extraccion"));
+	var nuevoLimite = prompt("Ingrese nuevo limite de extraccion");
 	limiteExtraccion = nuevoLimite;
-	actualizarLimiteEnPantalla();
-	alert ("Nuevo limite de extracción: " + nuevoLimite);
+	if (validacion(nuevoLimite)) {
+		actualizarLimiteEnPantalla();
+		alert ("Nuevo limite de extracción: " + nuevoLimite);
+	} else { 
+		console.log("Terminamos esta function"); 
+	} 
 }
 
 function haySaldoDisponible (dinero) {
@@ -59,17 +78,25 @@ function haySaldoDisponible (dinero) {
 }
 
 function extraerDinero() {
-	var dineroExtraido = parseInt(prompt("Cuanto dinero desea extraer?"));
-	haySaldoDisponible (dineroExtraido);
+	var dineroExtraido = prompt("Cuanto dinero desea extraer?");
+	if (validacion(dineroExtraido)) {
+		haySaldoDisponible (dineroExtraido);
+	} else { 
+		console.log("Terminamos esta function");
+	};
 }
 
 
 function depositarDinero() {
 	var dineroInicial = saldoCuenta;
-	var dineroDepositado = parseInt(prompt("Cuanto dinero desea depositar?"));
-	sumarDinero (dineroDepositado);
-	actualizarSaldoEnPantalla();
-	alert ("Saldo anterior: " + dineroInicial + "\nDinero depositado: " + dineroDepositado + "\nSaldo actual: " + saldoCuenta );
+	var dineroDepositado = prompt("Cuanto dinero desea depositar?");
+	if (validacion (dineroDepositado)) {
+		sumarDinero (dineroDepositado);
+		actualizarSaldoEnPantalla();
+		alert ("Saldo anterior: " + dineroInicial + "\nDinero depositado: " + dineroDepositado + "\nSaldo actual: " + saldoCuenta );
+	} else {
+		console.log("Terminamos esta function");
+	};
 }
 
 
@@ -88,46 +115,54 @@ function servicioPagar (servicio, elnombredelservicio) {
 
 function pagarServicio() {
 	var servicio = window.prompt ("Ingrese el numero que corresponda con el numero que queres pagar: \n1- Agua \n2- Luz \n3- Internet \n4- Telefono" );
-	switch ( servicio ) {
-		case "1":
-			servicioPagar (agua, "agua");
-			break;
-		case "2":
-			servicioPagar (luz, "luz");
-			break;
-		case "3":
-			servicioPagar (internet, "internet");
-			break;
-		case "4":
-			servicioPagar (telefono, "telefono");
-			break;
-		};
+	if (validacion(servicio)){
+		switch ( servicio ) {
+			case "1":
+				servicioPagar (agua, "agua");
+				break;
+			case "2":
+				servicioPagar (luz, "luz");
+				break;
+			case "3":
+				servicioPagar (internet, "internet");
+				break;
+			case "4":
+				servicioPagar (telefono, "telefono");
+				break;
+			};
+	} else {  
+	    console.log("Terminamos esta function");	
+	}		
 }
 
 
 
 function transferirDinero() {
 	var dineroInicial = saldoCuenta;
-	var dineroTransferido = parseInt(prompt("Cuanto dinero desea transferir?"));
-	if (dineroTransferido <= dineroInicial) {
-		var cuentaDestino = parseInt(prompt("A que nro de cuenta desea transferir?"));
-		if (cuentaDestino == cuentaAmiga1 || cuentaDestino == cuentaAmiga2) {
-			restarDinero(dineroTransferido);
-			actualizarSaldoEnPantalla();
-			alert ("Se han transferido " + dineroTransferido + "\nCuenta destino: " + cuentaDestino );
+	var dineroTransferido = prompt("Cuanto dinero desea transferir?");
+	if (validacion(dineroTransferido)) {
+		if (dineroTransferido <= dineroInicial) {
+			var cuentaDestino = prompt("A que nro de cuenta desea transferir?");
+			if (cuentaDestino == cuentaAmiga1 || cuentaDestino == cuentaAmiga2) {
+				restarDinero(dineroTransferido);
+				actualizarSaldoEnPantalla();
+				alert ("Se han transferido " + dineroTransferido + "\nCuenta destino: " + cuentaDestino );
+			} else {
+				alert ("Solo puede transferirse dinero a una cuenta amiga.");
+			}
 		} else {
-			alert ("Solo puede transferirse dinero a una cuenta amiga.");
+			alert("No puede transferirse esa cantidad de dinero.");
 		}
 	} else {
-		alert("No puede transferirse esa cantidad de dinero.");
-	}
+		console.log("Terminamos esta function");
+	}	
 	
 }
 
 
 
 function iniciarSesion() {
-	var inicioSesion = parseInt(prompt("Ingrese el codigo de seguridad de su cuenta"));
+	var inicioSesion = prompt("Ingrese el codigo de seguridad de su cuenta");
 	if (inicioSesion == codigoSeguridad) {
 		alert("Bienvenido Patricio Torello, ya puedes comenzar a hacer operaciones.");
 	} else {
@@ -137,7 +172,6 @@ function iniciarSesion() {
 		alert("Tu dinero ha sido retenido por razones de seguridad");
 	}
 }
-
 
 
 
