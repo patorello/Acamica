@@ -175,6 +175,8 @@ function iniciarSesion() {
 
 
 
+
+
 //Funciones que actualizan el valor de las variables en el HTML
 function cargarNombreEnPantalla() {
     document.getElementById("nombre").innerHTML = "Bienvenido/a " + nombreUsuario;
