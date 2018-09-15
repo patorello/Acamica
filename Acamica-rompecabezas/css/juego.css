@@ -19,6 +19,10 @@ li::before {
   color: #EC6778;
 }
 
+img {
+  max-width: 100%;
+}
+
 .col-40 h1 {
   font-size: 20px;
   color: #E84A5F;
@@ -37,7 +41,6 @@ li::before {
 
 .col-60 {
   background: #E84A5F;
-
 }
 
 #flecha{
@@ -48,7 +51,7 @@ li::before {
   text-align: center;
 }
 
-#juego div {
+#juego {
   text-align: center;
   animation: fadein 2s;
 }
@@ -56,4 +59,17 @@ li::before {
 @keyframes fadein {
   from { opacity: 0; }
   to   { opacity: 1; }
+}
+
+#juego {
+  width: 900px;
+  height: 900px;
+}
+
+.pieza {
+  width:300px;
+  height: 300px;
+  border:1px solid white;
+  box-sizing: border-box;
+  float: left;
 }
