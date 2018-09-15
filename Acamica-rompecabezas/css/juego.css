@@ -5,6 +5,8 @@ body {
   margin: 5% auto;
   min-height: 100%;
   background-image: url(../images/adventure.jpg);
+  font-family: 'Roboto', sans-serif;
+
 }
 ul {
   padding-left: 0;
@@ -24,8 +26,12 @@ img {
 }
 
 .col-40 h1 {
-  font-size: 20px;
+  font-size: 18px;
   color: #E84A5F;
+}
+
+.col-40 h2 {
+  font-size: 15px;
 }
 
 .col-40, .col-60 {
