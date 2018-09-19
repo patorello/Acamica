@@ -42,13 +42,12 @@ Existen diferentes formas de hacer este chequeo a partir de la grilla. */
 function chequearSiGano(grillaPrueba) {
     //COMPLETAR
     for (var i = 0; i < grillaPrueba.length; i++) {
-      for (var j = 0; j < grillaPrueba.length; j++) {
+      for (var j = 0; j < grillaPrueba[i].length; j++) {
         var actual = grillaPrueba[i][j];
+        if (actual = grilla){
         console.log(actual);
-        // if (actual) {
-        //   mostrarCartelGanador(grillaPrueba);
-        //   return true;
-        // }
+        mostrarCartelGanador(grillaPrueba);
+        }
       }
     }
 }
@@ -56,7 +55,6 @@ function chequearSiGano(grillaPrueba) {
 // Implementar alguna forma de mostrar un cartel que avise que ganaste el juego
 function mostrarCartelGanador(grilla) {
     //COMPLETAR
-    
      alert("Ganaste");
 }
 
