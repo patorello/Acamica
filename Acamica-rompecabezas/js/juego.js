@@ -11,6 +11,12 @@ var grilla = [
     [7, 8, 9]
 ];
 
+var grillaGanadora = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+];
+
 /* Estas dos variables son para guardar la posición de la pieza vacía. 
 Esta posición comienza siendo la [2, 2]*/
 var filaVacia = 2;
@@ -39,24 +45,22 @@ var direction = function (direccionElegida) {
 
 /* Esta función va a chequear si el Rompecabezas esta en la posicion ganadora. 
 Existen diferentes formas de hacer este chequeo a partir de la grilla. */
-function chequearSiGano(grillaPrueba) {
+function chequearSiGano() {
     //COMPLETAR
-    for (var i = 0; i < grillaPrueba.length; i++) {
-      for (var j = 0; j < grillaPrueba.length; j++) {
-        var actual = grillaPrueba[i][j];
-        console.log(actual);
-        // if (actual) {
-        //   mostrarCartelGanador(grillaPrueba);
-        //   return true;
-        // }
+    for (var i = 0; i < grilla.length; i++) {
+      for (var j = 0; j < grilla[i].length; j++) {
+        if (grilla[i][j] != grillaGanadora[i][j]){
+          return false;
+        } 
       }
     }
+    mostrarCartelGanador();
+
 }
 
 // Implementar alguna forma de mostrar un cartel que avise que ganaste el juego
-function mostrarCartelGanador(grilla) {
+function mostrarCartelGanador() {
     //COMPLETAR
-    
      alert("Ganaste");
 }
 
@@ -72,6 +76,9 @@ Se te ocurre cómo solucionar esto con una variable temporal?
 */
 function intercambiarPosicionesGrilla(filaPos1, columnaPos1, filaPos2, columnaPos2) {
     //COMPLETAR
+    var pieza1 = grilla [filaPos1][columnaPos1];
+    grilla [filaPos1][columnaPos1] = grilla [filaPos2][columnaPos2];
+    grilla [filaPos2][columnaPos2] = pieza1;
 }
 
 // Actualiza la posición de la pieza vacía
@@ -167,6 +174,7 @@ las fichas en la pantalla */
 
 function intercambiarPosicionesDOM(idPieza1, idPieza2) {
   // Intercambio posiciones en el DOM
+  console.log (idPieza1, idPieza2);
   var elementoPieza1 = document.getElementById(idPieza1);
   var elementoPieza2 = document.getElementById(idPieza2);
 
