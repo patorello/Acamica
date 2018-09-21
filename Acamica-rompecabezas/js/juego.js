@@ -47,21 +47,13 @@ var direction = function (direccionElegida) {
 Existen diferentes formas de hacer este chequeo a partir de la grilla. */
 function chequearSiGano() {
     //COMPLETAR
-<<<<<<< HEAD
-    for (var i = 0; i < grillaPrueba.length; i++) {
-      for (var j = 0; j < grillaPrueba[i].length; j++) {
-        var actual = grillaPrueba[i][j];
-        if (actual = grilla){
-        console.log(actual);
-        mostrarCartelGanador(grillaPrueba);
-        }
-=======
+
     for (var i = 0; i < grilla.length; i++) {
       for (var j = 0; j < grilla[i].length; j++) {
         if (grilla[i][j] != grillaGanadora[i][j]){
           return false;
         } 
->>>>>>> 4246bc41dd680a96ee680c14609fd93317eee857
+
       }
     }
     mostrarCartelGanador();
@@ -100,6 +92,20 @@ function actualizarPosicionVacia(nuevaFila, nuevaColumna) {
 // Para chequear si la posicón está dentro de la grilla.
 function posicionValida(fila, columna) {
     //COMPLETAR
+    for (var i = 0; i < grilla.length; i++) {
+      for (var j = 0; j < grilla[i].length; j++) {
+        var pruebafila = i;
+        var pruebacolumna = j;
+        console.log(pruebafila,pruebacolumna);
+      }
+    }
+
+    if (fila <= pruebafila && columna <= pruebacolumna) {
+          return true;
+        } else {
+          return false;
+        }
+
 }
 
 /* Movimiento de fichas, en este caso la que se mueve es la blanca intercambiando su posición con otro elemento.
