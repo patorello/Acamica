@@ -36,7 +36,7 @@ function mostrarInstrucciones(instrucciones) {
 /* COMPLETAR: Crear función que agregue la última dirección al arreglo de movimientos
 y utilice actualizarUltimoMovimiento para mostrarlo en pantalla */
 
-var direccion = function (direccionElegida) {
+var direction = function (direccionElegida) {
     // movimientos.pop();
     movimientos.push(direccionElegida);
     actualizarUltimoMovimiento(direccionElegida);
@@ -88,26 +88,32 @@ function actualizarPosicionVacia(nuevaFila, nuevaColumna) {
     //COMPLETAR
     filaVacia = nuevaFila;
     columnaVacia = nuevaColumna;
-
 }
 
 
 // Para chequear si la posicón está dentro de la grilla.
 function posicionValida(fila, columna) {
     //COMPLETAR
-    for (var i = 0; i < grilla.length; i++) {
-      for (var j = 0; j < grilla[i].length; j++) {
-        var pruebafila = i;
-        var pruebacolumna = j;
-        console.log(pruebafila,pruebacolumna);
-      }
+
+    if (fila < 3 && columna < 3 && fila >= 0 && columna >= 0) {
+      return true; 
+    } else {
+      return false;
     }
 
-    if (fila <= pruebafila && columna <= pruebacolumna) {
-          return true;
-        } else {
-          return false;
-        }
+    // for (var i = 0; i < grilla.length; i++) {
+    //   for (var j = 0; j < grilla[i].length; j++) {
+    //     var pruebafila = i;
+    //     var pruebacolumna = j;
+    //     // console.log(pruebafila,pruebacolumna);
+    //   }
+    // }
+
+    // if (fila <= pruebafila && columna <= pruebacolumna && fila >= 0 && columna >=0 ) {
+    //       return true;
+    //     } else {
+    //       return false;
+    //     }
 
 }
 
@@ -119,27 +125,27 @@ function moverEnDireccion(direccion) {
 
   // Mueve pieza hacia la abajo, reemplazandola con la blanca
   if (direccion === codigosDireccion.ABAJO) {
-    nuevaFilaPiezaVacia = filaVacia + 1;
+    nuevaFilaPiezaVacia = filaVacia - 1;
     nuevaColumnaPiezaVacia = columnaVacia;
   }
     
   // Mueve pieza hacia arriba, reemplazandola con la blanca
   else if (direccion === codigosDireccion.ARRIBA) {
-    nuevaFilaPiezaVacia = filaVacia - 1;
+    nuevaFilaPiezaVacia = filaVacia + 1;
     nuevaColumnaPiezaVacia = columnaVacia;
   }
     
   // Mueve pieza hacia la derecha, reemplazandola con la blanca
   else if (direccion === codigosDireccion.DERECHA) {
     //COMPLETAR
-    nuevaColumnaPiezaVacia = columnaVacia + 1;
+    nuevaColumnaPiezaVacia = columnaVacia - 1;
     nuevaFilaPiezaVacia = filaVacia;
   }
     
   // Mueve pieza hacia la izquierda, reemplazandola con la blanca
   else if (direccion === codigosDireccion.IZQUIERDA) {
     // COMPLETAR
-    nuevaColumnaPiezaVacia = columnaVacia - 1;
+    nuevaColumnaPiezaVacia = columnaVacia + 1;
     nuevaFilaPiezaVacia = filaVacia;
   }
 
@@ -150,11 +156,8 @@ function moverEnDireccion(direccion) {
     if (posicionValida(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia)) {
         intercambiarPosiciones(filaVacia, columnaVacia, nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia);
         actualizarPosicionVacia(nuevaFilaPiezaVacia, nuevaColumnaPiezaVacia);
-        // movimientos.push(moverEnDireccion(direccion));
-
-  //COMPLETAR: Agregar la dirección del movimiento al arreglo de movimientos
-
-
+       //COMPLETAR: Agregar la dirección del movimiento al arreglo de movimientos
+       direction(direccion);
     } 
 }
 
