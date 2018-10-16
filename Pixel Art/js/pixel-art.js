@@ -23,13 +23,65 @@ var nombreColores = ['White', 'LightYellow',
 // Variable para guardar el elemento 'color-personalizado'
 // Es decir, el que se elige con la rueda de color.
 var colorPersonalizado = document.getElementById('color-personalizado');
-
 colorPersonalizado.addEventListener('change', 
   (function() {
     // Se guarda el color de la rueda en colorActual
     colorActual = colorPersonalizado.value;
     // Completar para que cambie el indicador-de-color al colorActual
-
-
+    indicadorColor = document.getElementById("indicador-de-color"); 
+    indicadorColor.style.backgroundColor = colorActual;
+    // asignandoColor(colorActual);
   })
 );
+
+  //COMPLETAR
+
+var paletaColores = document.getElementById('paleta');
+var grillaPixeles = document.getElementById('grilla-pixeles');
+
+function nombresDeColores() {
+  for (var i=0;i<nombreColores.length;i++){
+    var coloresCreados = document.createElement("div");
+    coloresCreados.className = "color-paleta";
+    coloresCreados.style.backgroundColor = nombreColores[i];
+    paletaColores.appendChild(coloresCreados);
+  }
+}
+
+nombresDeColores();
+
+function grillaDePixeles() {
+  for (var i=0;i<1750;i++){
+    var pixelesCreados = document.createElement("div");
+    // pixelesCreados.className = "color-paleta";
+    // pixelesCreados.style.backgroundColor = "skyblue";
+    grillaPixeles.appendChild(pixelesCreados);
+  }
+}
+
+grillaDePixeles();
+
+
+paletaColores.addEventListener("click",asignandoColor);
+
+function asignandoColor(e){
+  indicadorColor = document.getElementById("indicador-de-color");
+  var colorActivo = e.target.style.backgroundColor; 
+  indicadorColor.style.backgroundColor = colorActivo;
+}
+
+grillaPixeles.addEventListener("click", pintandoGrilla);
+
+function pintandoGrilla(e){
+  var colorActual = indicadorColor.style.backgroundColor; 
+  e.target.style.backgroundColor = colorActual;
+}
+
+  
+var moviendo = grillaPixeles.addEventListener("mousedown", function(){console.log("Aprieto")});
+var soltando = grillaPixeles.addEventListener("mouseup", function(){console.log("Suelto")});
+
+
+
+
+
