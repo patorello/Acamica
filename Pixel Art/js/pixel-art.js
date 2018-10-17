@@ -28,9 +28,9 @@ colorPersonalizado.addEventListener('change',
     // Se guarda el color de la rueda en colorActual
     colorActual = colorPersonalizado.value;
     // Completar para que cambie el indicador-de-color al colorActual
-    indicadorColor = document.getElementById("indicador-de-color"); 
-    indicadorColor.style.backgroundColor = colorActual;
-    // asignandoColor(colorActual);
+    // indicadorColor = document.getElementById("indicador-de-color"); 
+    // indicadorColor.style.backgroundColor = colorActual;
+    asignandoColor(colorActual);
   })
 );
 
@@ -53,8 +53,6 @@ nombresDeColores();
 function grillaDePixeles() {
   for (var i=0;i<1750;i++){
     var pixelesCreados = document.createElement("div");
-    // pixelesCreados.className = "color-paleta";
-    // pixelesCreados.style.backgroundColor = "skyblue";
     grillaPixeles.appendChild(pixelesCreados);
   }
 }
@@ -66,8 +64,17 @@ paletaColores.addEventListener("click",asignandoColor);
 
 function asignandoColor(e){
   indicadorColor = document.getElementById("indicador-de-color");
+  if(e.target)
+{
   var colorActivo = e.target.style.backgroundColor; 
   indicadorColor.style.backgroundColor = colorActivo;
+}
+else
+{
+  console.log(e);
+  console.log('COLOR PICKER');
+}
+  
 }
 
 grillaPixeles.addEventListener("click", pintandoGrilla);
@@ -77,11 +84,11 @@ function pintandoGrilla(e){
   e.target.style.backgroundColor = colorActual;
 }
 
-  
-var moviendo = grillaPixeles.addEventListener("mousedown", function(){console.log("Aprieto")});
-var soltando = grillaPixeles.addEventListener("mouseup", function(){console.log("Suelto")});
+var moviendo = function() {
+  grillaPixeles.addEventListener("mousedown", function(){console.log("Aprieto")});
+  grillaPixeles.addEventListener("mouseup", function(){console.log("Suelto")});
+}
 
-
-
+moviendo();
 
 
