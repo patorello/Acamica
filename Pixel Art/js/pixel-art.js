@@ -28,8 +28,6 @@ colorPersonalizado.addEventListener('change',
     // Se guarda el color de la rueda en colorActual
     colorActual = colorPersonalizado.value;
     // Completar para que cambie el indicador-de-color al colorActual
-    // indicadorColor = document.getElementById("indicador-de-color"); 
-    // indicadorColor.style.backgroundColor = colorActual;
     asignandoColor(colorActual);
   })
 );
@@ -64,18 +62,12 @@ paletaColores.addEventListener("click",asignandoColor);
 
 function asignandoColor(e){
   indicadorColor = document.getElementById("indicador-de-color");
-  if(e.target)
-{
+  if(e.target){
   var colorActivo = e.target.style.backgroundColor; 
   indicadorColor.style.backgroundColor = colorActivo;
-}
-else
-{
-  console.log(e);
-  console.log('COLOR PICKER');
-}
-  
-}
+  } else {
+  indicadorColor.style.backgroundColor = e;}
+};
 
 grillaPixeles.addEventListener("click", pintandoGrilla);
 
@@ -84,11 +76,41 @@ function pintandoGrilla(e){
   e.target.style.backgroundColor = colorActual;
 }
 
-var moviendo = function() {
-  grillaPixeles.addEventListener("mousedown", function(){console.log("Aprieto")});
-  grillaPixeles.addEventListener("mouseup", function(){console.log("Suelto")});
+
+
+
+
+// registers and unregisters listeners for tools
+function trackDrag(onMove, onEnd) {
+  function end(event) {
+    removeEventListener('mousemove', onMove);
+    removeEventListener('mouseup', end);
+    if (onEnd)
+      onEnd(event);
+  }
+  addEventListener('mousemove', onMove);
+  addEventListener('mouseup', end);
 }
 
-moviendo();
+
+
+grillaPixeles.addEventListener('mousedown', function(){
+    grillaPixeles.addEventListener('mousemove',pintandoGrilla)
+});
+
+grillaPixeles.addEventListener('mouseup', function(){
+    grillaPixeles.removeEventListener('mousemove', pintandoGrilla)
+});
+
+
+$(document).ready(function(){
+
+  $("#borrar").click(function(){
+    $("#grilla-pixeles").children(div).hide().fadeIn(100);
+  })
+
+});
+
+
 
 
