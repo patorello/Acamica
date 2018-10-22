@@ -105,9 +105,11 @@ grillaPixeles.addEventListener('mouseup', function(){
 
 $(document).ready(function(){
 
-  $("#borrar").click(function(){
-    $("#grilla-pixeles").children(div).hide().fadeIn(100);
-  })
+  var borrandoPixeles = $("#borrar").click(function(){
+    $("#grilla-pixeles").children().removeAttr("style");
+  });
+
+  $(borrandoPixeles).fadeOut(1000);
 
 });
 
