@@ -102,31 +102,37 @@ grillaPixeles.addEventListener('mouseup', function(){
     grillaPixeles.removeEventListener('mousemove', pintandoGrilla)
 });
 
+function mostrarSuperheroe(superheroe, fade = 0) {
+  $(cargarSuperheroe(superheroe)).fadeIn(fade);
+}
+
 
 $(document).ready(function(){
 
-  var borrandoPixeles = $("#grilla-pixeles").children(function(){
-    $(this).each().attr("style");
-  });
+  var borrandoPixeles = $("#grilla-pixeles").children("div");
 
   $("#borrar").click(function(){
     $(borrandoPixeles).animate({"background-color":"#ffffff"}, 500);
   });
 
   $("#batman").click(function(){
-    $(cargarSuperheroe(batman)).fadeIn(5000);
+    mostrarSuperheroe(batman, 5000)
+    // $(cargarSuperheroe(batman)).fadeIn(5000);
   });
 
   $("#wonder").click(function(){
-    $(cargarSuperheroe(wonder)).fadeIn(5000);
+    mostrarSuperheroe(wonder, 5000)
+    // $(cargarSuperheroe(wonder)).fadeIn(5000);
   });
 
   $("#flash").click(function(){
-    $(cargarSuperheroe(flash)).fadeIn();
+    mostrarSuperheroe(flash)
+  //   $(cargarSuperheroe(flash)).fadeIn();
   });
 
   $("#invisible").click(function(){
-    $(cargarSuperheroe(invisible)).fadeIn();
+    mostrarSuperheroe(invisible)
+    // $(cargarSuperheroe(invisible)).fadeIn();
   });
 
   $("#guardar").click(guardarPixelArt);
