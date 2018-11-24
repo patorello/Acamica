@@ -78,22 +78,6 @@ function pintandoGrilla(e){
 
 
 
-
-
-// registers and unregisters listeners for tools
-function trackDrag(onMove, onEnd) {
-  function end(event) {
-    removeEventListener('mousemove', onMove);
-    removeEventListener('mouseup', end);
-    if (onEnd)
-      onEnd(event);
-  }
-  addEventListener('mousemove', onMove);
-  addEventListener('mouseup', end);
-}
-
-
-
 grillaPixeles.addEventListener('mousedown', function(){
     grillaPixeles.addEventListener('mousemove',pintandoGrilla)
 });
@@ -101,6 +85,8 @@ grillaPixeles.addEventListener('mousedown', function(){
 grillaPixeles.addEventListener('mouseup', function(){
     grillaPixeles.removeEventListener('mousemove', pintandoGrilla)
 });
+
+
 
 function mostrarSuperheroe(superheroe, fade = 0) {
   $(cargarSuperheroe(superheroe)).fadeIn(fade);
@@ -117,22 +103,18 @@ $(document).ready(function(){
 
   $("#batman").click(function(){
     mostrarSuperheroe(batman, 5000)
-    // $(cargarSuperheroe(batman)).fadeIn(5000);
   });
 
   $("#wonder").click(function(){
     mostrarSuperheroe(wonder, 5000)
-    // $(cargarSuperheroe(wonder)).fadeIn(5000);
   });
 
   $("#flash").click(function(){
     mostrarSuperheroe(flash)
-  //   $(cargarSuperheroe(flash)).fadeIn();
   });
 
   $("#invisible").click(function(){
     mostrarSuperheroe(invisible)
-    // $(cargarSuperheroe(invisible)).fadeIn();
   });
 
   $("#guardar").click(guardarPixelArt);
