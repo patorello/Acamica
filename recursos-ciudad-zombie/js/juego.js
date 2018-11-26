@@ -20,7 +20,21 @@ var Juego = {
   obstaculosCarretera: [
     /*Aca se van a agregar los obstaculos visibles. Tenemos una valla horizontal
     de ejemplo, pero podras agregar muchos mas. */
-    new Obstaculo('imagenes/valla_horizontal.png', 70, 430, 30, 30, 1)
+    new Obstaculo('imagenes/valla_horizontal.png', 70, 430, 30, 30, 1),
+    new Obstaculo('imagenes/valla_horizontal.png', 100, 430, 30, 30, 1),
+    new Obstaculo('imagenes/valla_horizontal.png', 130, 430, 30, 30, 1),
+    new Obstaculo('imagenes/valla_horizontal.png', 510, 410, 30, 30, 1),
+    new Obstaculo('imagenes/valla_vertical.png', 190, 450, 30, 30, 1),
+    new Obstaculo('imagenes/valla_vertical.png', 480, 440, 30, 30, 1),
+    new Obstaculo('imagenes/valla_vertical.png', 480, 470, 30, 30, 1),
+    new Obstaculo('imagenes/bache.png', 180, 280, 30, 30, 1),
+    new Obstaculo('imagenes/bache.png', 320, 480, 30, 30, 1),
+    new Obstaculo('imagenes/bache.png', 380, 80, 30, 30, 1),
+    new Obstaculo('imagenes/bache.png', 780, 220, 30, 30, 1),
+    new Obstaculo('imagenes/auto_verde_abajo.png', 180, 240, 15, 30, 1),
+    new Obstaculo('imagenes/auto_verde_abajo.png', 840, 440, 15, 30, 1),
+    new Obstaculo('imagenes/auto_verde_derecha.png', 380, 480, 30, 15, 1),
+    new Obstaculo('imagenes/kirby.png', 550, 200, 45, 40, 1)
 
   ],
   /* Estos son los bordes con los que se puede chocar, por ejemplo, la vereda.
@@ -72,7 +86,8 @@ Juego.iniciarRecursos = function() {
     'imagenes/auto_rojo_derecha.png',
     'imagenes/auto_rojo_izquierda.png',
     'imagenes/auto_verde_abajo.png',
-    'imagenes/auto_verde_derecha.png'
+    'imagenes/auto_verde_derecha.png',
+    'imagenes/kirby.png'
   ]);
   Resources.onReady(this.comenzar.bind(Juego));
 };
@@ -115,15 +130,28 @@ Juego.capturarMovimiento = function(tecla) {
   // El movimiento esta determinado por la velocidad del jugador
   if (tecla == 'izq') {
     movX = -velocidad;
+    this.jugador.sprite = 'imagenes/auto_rojo_izquierda.png';
+    this.jugador.ancho = 30;
+    this.jugador.alto = 15;
   }
   if (tecla == 'arriba') {
     movY = -velocidad;
+    this.jugador.sprite = 'imagenes/auto_rojo_arriba.png';
+    this.jugador.ancho = 15;
+    this.jugador.alto = 30;
   }
   if (tecla == 'der') {
     movX = velocidad;
+    this.jugador.sprite = 'imagenes/auto_rojo_derecha.png';
+    this.jugador.ancho = 30;
+    this.jugador.alto = 15;
   }
+
   if (tecla == 'abajo') {
     movY = velocidad;
+    this.jugador.sprite = 'imagenes/auto_rojo_abajo.png';
+    this.jugador.ancho = 15;
+    this.jugador.alto = 30;
   }
 
   // Si se puede mover hacia esa posicion hay que hacer efectivo este movimiento
@@ -132,6 +160,10 @@ Juego.capturarMovimiento = function(tecla) {
     de sus metodos  */
 
     /* COMPLETAR */
+    this.jugador.x = movX + Jugador.x;
+    this.jugador.y = movY + Jugador.y;
+
+
   }
 };
 
@@ -147,6 +179,7 @@ Juego.dibujar = function() {
   "Dibujante dibuja al jugador" */
 
   /* Completar */
+  Dibujante.dibujarEntidad(Jugador);
 
   // Se recorren los obstaculos de la carretera pintandolos
   this.obstaculosCarretera.forEach(function(obstaculo) {
@@ -202,6 +235,7 @@ Juego.chequearColisiones = function(x, y) {
     if (this.intersecan(obstaculo, this.jugador, x, y)) {
 
       /*COMPLETAR, obstaculo debe chocar al jugador*/
+      obstaculo.chocar(Jugador); 
 
       puedeMoverse = false
     }
