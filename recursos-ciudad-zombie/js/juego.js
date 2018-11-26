@@ -181,6 +181,10 @@ Juego.dibujar = function() {
   /* Completar */
   Dibujante.dibujarEntidad(Jugador);
 
+
+  /* Dibujar la llegada */
+  Dibujante.dibujarRectangulo('yellow', 759, 535, 128, 25);
+
   // Se recorren los obstaculos de la carretera pintandolos
   this.obstaculosCarretera.forEach(function(obstaculo) {
     Dibujante.dibujarEntidad(obstaculo);
