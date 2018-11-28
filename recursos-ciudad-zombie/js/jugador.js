@@ -16,8 +16,30 @@ var Jugador = {
     this.vidas = this.vidas - cantVidas;
   },
 
-  mover: function(){
-    
+  mover: function(tecla){
+
+    var movY = {
+      ancho: 30,
+      alto: 15,
+    }
+
+    if (tecla == 'izq'){
+    mover.movY;  
+    this.sprite = 'imagenes/auto_rojo_izquierda.png';
+    }
+
+    if (tecla == 'arriba') {
+      this.sprite = 'imagenes/auto_rojo_arriba.png';
+    }
+
+    if (tecla == 'der') {
+      this.sprite = 'imagenes/auto_rojo_derecha.png';
+    }
+  
+    if (tecla == 'abajo') {
+      this.sprite = 'imagenes/auto_rojo_abajo.png';
+    }
+
   },
 
 }
