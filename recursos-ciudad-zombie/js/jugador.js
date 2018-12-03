@@ -18,25 +18,33 @@ var Jugador = {
 
   mover: function(tecla){
 
-    var movY = {
-      ancho: 30,
-      alto: 15,
+    function movY() {
+      Jugador.ancho = 15;
+      Jugador.alto = 30;
     }
 
+    function movX() {
+      Jugador.ancho = 30;
+      Jugador.alto = 15;
+    }
+    
     if (tecla == 'izq'){
-    mover.movY;  
-    this.sprite = 'imagenes/auto_rojo_izquierda.png';
+      movX();
+      this.sprite = 'imagenes/auto_rojo_izquierda.png';
     }
 
     if (tecla == 'arriba') {
+      movY();
       this.sprite = 'imagenes/auto_rojo_arriba.png';
     }
 
     if (tecla == 'der') {
+      movX();
       this.sprite = 'imagenes/auto_rojo_derecha.png';
     }
   
     if (tecla == 'abajo') {
+      movY();
       this.sprite = 'imagenes/auto_rojo_abajo.png';
     }
 
