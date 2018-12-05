@@ -58,14 +58,14 @@ var Juego = {
   ],
   // Los enemigos se agregaran en este arreglo.
   enemigos: [
-    new Enemigo('imagenes/zombie1.png', 95, 60, 10, 10, 10, 500),
-    new Enemigo('imagenes/zombie2.png', 150, 260, 10, 10, 10, 500),
-    new Enemigo('imagenes/zombie3.png', 450, 90, 10, 10, 10, 500),
-    new Enemigo('imagenes/zombie4.png', 805, 200, 10, 10, 10, 500),
-    new Enemigo('imagenes/zombie4.png', 805, 200, 10, 10, 10, 500),
-    new Enemigo('imagenes/tren_horizontal.png', 400, 322, 90, 30, 10, 500),
-    new Enemigo('imagenes/tren_vertical.png', 644, 0, 30, 90, 10, 500),
-    new Enemigo('imagenes/tren_vertical.png', 678, 0, 30, 90, 10, 500)
+    new ZombieCaminante('imagenes/zombie1.png', 95, 60, 10, 10, 10, 500, 300),
+    new ZombieCaminante('imagenes/zombie2.png', 150, 260, 10, 10, 10, 500),
+    new ZombieCaminante('imagenes/zombie3.png', 450, 90, 10, 10, 10, 500),
+    new ZombieCaminante('imagenes/zombie4.png', 805, 200, 10, 10, 10, 500),
+    new ZombieCaminante('imagenes/zombie4.png', 805, 200, 10, 10, 10, 500),
+    new ZombieConductor('imagenes/tren_horizontal.png', 400, 322, 90, 30, 10, 500),
+    new ZombieConductor('imagenes/tren_vertical.png', 644, 0, 30, 90, 10, 500),
+    new ZombieConductor('imagenes/tren_vertical.png', 678, 0, 30, 90, 10, 500)
   ]
 
 }
@@ -212,9 +212,11 @@ un recorrido por los enemigos para dibujarlos en pantalla ahora habra que hacer
 una funcionalidad similar pero para que se muevan.*/
 Juego.moverEnemigos = function() {
   /* COMPLETAR */
-  enemigos.forEach(){
-    Juego.buclePrincipal();
-  }
+  this.enemigos.forEach(function(element){
+    // ZombieCaminante.prototype.mover(Enemigo);
+    Juego.enemigos[].mover()
+  });
+
 };
 
 /* Recorre los enemigos para ver cual esta colisionando con el jugador
