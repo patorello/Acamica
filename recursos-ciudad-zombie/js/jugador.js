@@ -48,7 +48,7 @@ var Jugador = {
     }
   },
 
-  perdervidas: function(cantVidas) {
+  perderVidas: function(cantVidas) {
      if (this.vidas >= 0) {
       this.vidas -= cantVidas;
       }
