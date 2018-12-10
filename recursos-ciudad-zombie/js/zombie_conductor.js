@@ -4,11 +4,12 @@ Por ejemplo, la cantidad parametros que recibe su constructor. En ZombieConducto
 no son exactamente los mismos parametros que en el objeto Enemigo, a diferencia
 del ZombieCaminante que eran los mismos. */
 
-var ZombieConductor = function(sprite, x, y, ancho, alto, velocidad, rangoMov/*, parametro/s extra de ZombieConductor*/) {
+var ZombieConductor = function(sprite, x, y, ancho, alto, velocidad, rangoMov, direccion) {
   /* Completar constructor a partir de Enemigo */
   //Enemigo.call(/* ... */);
   Enemigo.call(this, sprite, x, y, ancho, alto, velocidad, rangoMov);
   /* No olvidar agregar la/s propiedad/es unicas de ZombieConductor necesarias */
+  this.direccion=direccion;
 }
 
 /* Completar creacion del ZombieConductor */
@@ -19,22 +20,24 @@ ZombieConductor.prototype.constructor = ZombieConductor;
 
 ZombieConductor.prototype.mover = function() {
 
-  if (Math.random() < 0.5) {
-    this.x -= this.velocidad;
-    this.y -= this.velocidad;
-  } else {
-    //Sino, hace otro movimiento
-    this.y += this.velocidad;
-    this.x -= this.velocidad;
-  };
+    if (this.direccion == 'vertical') {
+	   this.y += this.velocidad;
+	   if ((this.y < this.rangoMov.desdeY) || (this.y > this.rangoMov.hastaY)) {
+	     this.velocidad *= -1;
+	   }
+	}   
 
-  if ((this.x < this.rangoMov.desdeX) || (this.x > this.rangoMov.hastaX)){
-    this.velocidad *= -1;
-  }
-  // Si sobrepasa el rangoY, lo manda al centro entre ambos rangos
-  if ((this.y < this.rangoMov.desdeY) || (this.y > this.rangoMov.hastaY)) {
-    this.y = this.rangoMov.desdeY + (this.rangoMov.hastaY - this.rangoMov.desdeY)/2;
-  }
+	 if (this.direccion == 'horizontal'){
+		   this.x += this.velocidad;
+		   if ((this.x < this.rangoMov.desdeX) || (this.x > this.rangoMov.hastaX)){
+		     this.velocidad *= -1;
+		   }
+	 }
 
+};
+
+ZombieConductor.prototype.atacar = function(jugador) {
+
+  jugador.perderVidas(jugador.vidas);
 
 }

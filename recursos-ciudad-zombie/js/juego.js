@@ -8,6 +8,9 @@ texto COMPLETAR que deben completarse segun lo indique la consigna.
 El objeto Juego contiene mucho codigo. Tomate tu tiempo para leerlo tranquilo
 y entender que es lo que hace en cada una de sus partes. */
 
+
+var rangoMov = {desdeX: 0, hastaX: 961, desdeY: 0, hastaY: 577};
+
 var Juego = {
   // Aca se configura el tamanio del canvas del juego
   anchoCanvas: 961,
@@ -58,14 +61,13 @@ var Juego = {
   ],
   // Los enemigos se agregaran en este arreglo.
   enemigos: [
-    new ZombieCaminante('imagenes/zombie1.png', 95, 60, 10, 10, 10, 500, 300),
-    new ZombieCaminante('imagenes/zombie2.png', 150, 260, 10, 10, 10, 500),
-    new ZombieCaminante('imagenes/zombie3.png', 450, 90, 10, 10, 10, 500),
-    new ZombieCaminante('imagenes/zombie4.png', 805, 200, 10, 10, 10, 500),
-    new ZombieCaminante('imagenes/zombie4.png', 805, 200, 10, 10, 10, 500),
-    new ZombieConductor('imagenes/tren_horizontal.png', 400, 322, 90, 30, 10, 500),
-    new ZombieConductor('imagenes/tren_vertical.png', 644, 0, 30, 90, 10, 500),
-    new ZombieConductor('imagenes/tren_vertical.png', 678, 0, 30, 90, 10, 500)
+    new ZombieCaminante('imagenes/zombie1.png', 95, 60, 10, 10, 0.25,rangoMov),
+    new ZombieCaminante('imagenes/zombie2.png', 150, 260, 10, 10, 0.25, rangoMov),
+    new ZombieCaminante('imagenes/zombie3.png', 450, 90, 10, 10, 0.25, rangoMov),
+    new ZombieCaminante('imagenes/zombie4.png', 805, 200, 10, 10, 0.25, rangoMov),
+    new ZombieConductor('imagenes/tren_horizontal.png', 400, 322, 90, 30, 10, rangoMov, 'horizontal'),
+    new ZombieConductor('imagenes/tren_vertical.png', 644, 0, 30, 90, 10, { desdeX: 0, hastaX: 961, desdeY: -15, hastaY: 600}, 'vertical'),
+    new ZombieConductor('imagenes/tren_vertical.png', 678, 0, 30, 90, 8, { desdeX: 0, hastaX: 961, desdeY: -30, hastaY: 600}, 'vertical')
   ]
 
 }
@@ -137,21 +139,17 @@ Juego.capturarMovimiento = function(tecla) {
   // El movimiento esta determinado por la velocidad del jugador
   if (tecla == 'izq') {
     movX = -velocidad;
-    this.jugador.mover(tecla);
   }
 
   if (tecla == 'arriba') {
     movY = -velocidad;
-    this.jugador.mover(tecla);
   }
   if (tecla == 'der') {
     movX = velocidad;
-    this.jugador.mover(tecla);
   }
 
   if (tecla == 'abajo') {
     movY = velocidad;
-    this.jugador.mover(tecla);
   }
 
   // Si se puede mover hacia esa posicion hay que hacer efectivo este movimiento
@@ -160,9 +158,7 @@ Juego.capturarMovimiento = function(tecla) {
     de sus metodos  */
 
     /* COMPLETAR */
-    this.jugador.x = movX + Jugador.x;
-    this.jugador.y = movY + Jugador.y;
-
+    this.jugador.mover(movX,movY,tecla);
 
   }
 };
@@ -179,7 +175,7 @@ Juego.dibujar = function() {
   "Dibujante dibuja al jugador" */
 
   /* Completar */
-  Dibujante.dibujarEntidad(Jugador);
+  Dibujante.dibujarEntidad(this.jugador);
 
 
   /* Dibujar la llegada */
@@ -203,6 +199,8 @@ Juego.dibujar = function() {
     var x = tamanio * i
     Dibujante.dibujarRectangulo('red', x, 0, tamanio, 8);
   }
+
+
 };
 
 
@@ -212,9 +210,8 @@ un recorrido por los enemigos para dibujarlos en pantalla ahora habra que hacer
 una funcionalidad similar pero para que se muevan.*/
 Juego.moverEnemigos = function() {
   /* COMPLETAR */
-  this.enemigos.forEach(function(element){
-    // ZombieCaminante.prototype.mover(Enemigo);
-    Juego.enemigos[].mover()
+  this.enemigos.forEach(function(enemigo){
+    enemigo.mover();
   });
 
 };
@@ -228,9 +225,11 @@ Juego.calcularAtaques = function() {
     if (this.intersecan(enemigo, this.jugador, this.jugador.x, this.jugador.y)) {
       /* Si el enemigo colisiona debe empezar su ataque
       COMPLETAR */
+      enemigo.comenzarAtaque(this.jugador);
     } else {
       /* Sino, debe dejar de atacar
       COMPLETAR */
+      enemigo.dejarDeAtacar();
     }
   }, this);
 };
