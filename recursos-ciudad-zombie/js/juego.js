@@ -25,7 +25,6 @@ var Juego = {
     de ejemplo, pero podras agregar muchos mas. */
     new Obstaculo('imagenes/valla_horizontal.png', 70, 430, 30, 30, 1),
     new Obstaculo('imagenes/valla_horizontal.png', 101, 430, 30, 30, 1),
-    new Obstaculo('imagenes/valla_horizontal.png', 133, 430, 30, 30, 1),
     new Obstaculo('imagenes/valla_horizontal.png', 510, 410, 30, 30, 1),
     new Obstaculo('imagenes/valla_vertical.png', 190, 450, 30, 30, 1),
     new Obstaculo('imagenes/valla_vertical.png', 480, 440, 30, 30, 1),
@@ -61,10 +60,10 @@ var Juego = {
   ],
   // Los enemigos se agregaran en este arreglo.
   enemigos: [
-    new ZombieCaminante('imagenes/zombie1.png', 95, 60, 10, 10, 0.25,rangoMov),
-    new ZombieCaminante('imagenes/zombie2.png', 150, 260, 10, 10, 0.25, rangoMov),
-    new ZombieCaminante('imagenes/zombie3.png', 450, 90, 10, 10, 0.25, rangoMov),
-    new ZombieCaminante('imagenes/zombie4.png', 805, 200, 10, 10, 0.25, rangoMov),
+    new ZombieCaminante('imagenes/zombie1.png', 95, 60, 10, 10, 2,rangoMov),
+    new ZombieCaminante('imagenes/zombie2.png', 150, 260, 10, 10, 2, rangoMov),
+    new ZombieCaminante('imagenes/zombie3.png', 450, 90, 10, 10, 2, rangoMov),
+    new ZombieCaminante('imagenes/zombie4.png', 805, 200, 10, 10, 2, rangoMov),
     new ZombieConductor('imagenes/tren_horizontal.png', 400, 322, 90, 30, 10, rangoMov, 'horizontal'),
     new ZombieConductor('imagenes/tren_vertical.png', 644, 0, 30, 90, 10, { desdeX: 0, hastaX: 961, desdeY: -15, hastaY: 600}, 'vertical'),
     new ZombieConductor('imagenes/tren_vertical.png', 678, 0, 30, 90, 8, { desdeX: 0, hastaX: 961, desdeY: -30, hastaY: 600}, 'vertical')
@@ -273,12 +272,18 @@ Juego.dibujarFondo = function() {
   if (this.terminoJuego()) {
     Dibujante.dibujarImagen('imagenes/mensaje_gameover.png', 0, 5, this.anchoCanvas, this.altoCanvas);
     document.getElementById('reiniciar').style.visibility = 'visible';
+    // Escondo enemigos y obsctaculos cuando pierdo
+    this.obstaculos.style.visibility = 'hidden';
+    this.enemigos.style.visibility = 'hidden';
   }
 
   // Si se gano el juego hay que mostrar el mensaje de ganoJuego de fondo
   else if (this.ganoJuego()) {
     Dibujante.dibujarImagen('imagenes/Splash.png', 190, 113, 500, 203);
     document.getElementById('reiniciar').style.visibility = 'visible';
+    // Escondo enemigos y obsctaculos cuando gano
+    this.obstaculos.style.visibility = 'hidden';
+    this.enemigos.style.visibility = 'hidden';
   } else {
     Dibujante.dibujarImagen('imagenes/mapa.png', 0, 5, this.anchoCanvas, this.altoCanvas);
   }
