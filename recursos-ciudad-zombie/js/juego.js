@@ -10,6 +10,7 @@ y entender que es lo que hace en cada una de sus partes. */
 
 
 var rangoMov = {desdeX: 0, hastaX: 961, desdeY: 0, hastaY: 577};
+var rangoMovKirby = {desdeX: 500, hastaX: 600, desdeY: 300, hastaY: 400};
 
 var Juego = {
   // Aca se configura el tamanio del canvas del juego
@@ -36,7 +37,7 @@ var Juego = {
     new Obstaculo('imagenes/auto_verde_abajo.png', 180, 240, 15, 30, 1),
     new Obstaculo('imagenes/auto_verde_abajo.png', 840, 440, 15, 30, 1),
     new Obstaculo('imagenes/auto_verde_derecha.png', 380, 480, 30, 15, 1),
-    new Obstaculo('imagenes/kirby.png', 550, 200, 45, 40, 1)
+    new Obstaculo('imagenes/brick.png', 530, 230, 20, 20, 1)
 
   ],
   /* Estos son los bordes con los que se puede chocar, por ejemplo, la vereda.
@@ -64,6 +65,7 @@ var Juego = {
     new ZombieCaminante('imagenes/zombie2.png', 150, 260, 10, 10, 2, rangoMov),
     new ZombieCaminante('imagenes/zombie3.png', 450, 90, 10, 10, 2, rangoMov),
     new ZombieCaminante('imagenes/zombie4.png', 805, 200, 10, 10, 2, rangoMov),
+    new kirby('imagenes/kirby.png', 550, 200, 45, 40, 0.75, rangoMovKirby),
     new ZombieConductor('imagenes/tren_horizontal.png', 400, 322, 90, 30, 10, rangoMov, 'horizontal'),
     new ZombieConductor('imagenes/tren_vertical.png', 644, 0, 30, 90, 10, { desdeX: 0, hastaX: 961, desdeY: -15, hastaY: 600}, 'vertical'),
     new ZombieConductor('imagenes/tren_vertical.png', 678, 0, 30, 90, 8, { desdeX: 0, hastaX: 961, desdeY: -30, hastaY: 600}, 'vertical')
@@ -95,6 +97,7 @@ Juego.iniciarRecursos = function() {
     'imagenes/auto_rojo_izquierda.png',
     'imagenes/auto_verde_abajo.png',
     'imagenes/auto_verde_derecha.png',
+    'imagenes/brick.png',
     'imagenes/kirby.png'
   ]);
   Resources.onReady(this.comenzar.bind(Juego));
