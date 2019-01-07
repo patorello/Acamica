@@ -49,14 +49,14 @@ Restaurant.prototype.obtenerPuntuacion = function() {
     }
 }
 
-Restaurant.prototype.sumatoria = function(nuevaPuntuacion){
+Restaurant.prototype.sumatoria = function(numeros){
     var sumatoria = 0;
-    nuevaPuntuacion.forEach(element => { sumatoria += element;});
+    numeros.forEach(element => { sumatoria += element;});
     return sumatoria;
 }
 
-Restaurant.prototype.promedio = function(arregloAPromediar){
-    return Math.round((this.sumatoria(arregloAPromediar) / arregloAPromediar.length) * 10) / 10;
+Restaurant.prototype.promedio = function(numeros){
+    return Math.round((this.sumatoria(numeros) / numeros.length) * 10) / 10;
 }
 
 
