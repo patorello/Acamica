@@ -19,20 +19,13 @@ Listado.prototype.calificarRestaurant = function(id, calificacion) {
 //Dado un id, busca el objeto del listado que tiene ese id
 Listado.prototype.buscarRestaurante = function(id) {
 
-    var restoSeleccionado = this.restaurantes.find((restaurant)=>restaurant.id ===id);
+    var restoSeleccionado = this.restaurantes.find((restaurant)=>restaurant.id === id);
     
-    if ( restoSeleccionado.id > 0){
-        return restoSeleccionado;
-    } else if (restoSeleccionado.id == undefined) {
+    if ( restoSeleccionado == undefined) {
         return "No se ha encontrado ningún restaurant";
+    } else {
+        return restoSeleccionado;
     }
-    
-
-    //   var restaurantSeleccionado = this.restaurantes.filter(restaurant => restaurant.id == id);
-
-    //   if (restaurantSeleccionado.length > 0){
-    //       return restaurantSeleccionado[0];
-    //   }  
 
 
     // for (var i = 0; i < this.restaurantes.length; i++) {
