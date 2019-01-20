@@ -116,9 +116,30 @@ describe('Test de reservando', function(){
         it('Funciona utilizando los filtros de ciudad, rubro y horario', function() {
           expect(listado.obtenerRestaurantes('Pasta','Berlín','15:00').length).to.equal(1);
         });
+
+        it('Funciona correctamente segun los distintos filtros', function() {
+          expect(listado.obtenerRestaurantes(null,null,null).length).to.equal(24);
+          expect(listado.obtenerRestaurantes(null,'Nueva York',null).length).to.equal(7);
+          expect(listado.obtenerRestaurantes('Hamburguesa',null,null).length).to.equal(4);
+          expect(listado.obtenerRestaurantes(null,null,'08:00').length).to.equal(0);
+          expect(listado.obtenerRestaurantes('Pasta','Berlín','12:00').length).to.equal(1);
+        });
   
       });  
 
+      describe('Testeando la funcion precioBase del objeto reserva', function() {
+        it('Calucla correctamente el precio base', function() {
+          expect(listadoDeReservas[0].precioBase()).to.equal(2800);
+          expect(listadoDeReservas[1].precioBase()).to.equal(300);
+        });
+      });
+  
+      describe('Testeando la funcion precioFinal del objeto reserva', function() {
+        it('Calucla correctamente el precio final', function() {
+          expect(listadoDeReservas[0].precioFinal()).to.equal(2310);
+          expect(listadoDeReservas[1].precioFinal()).to.equal(100);
+        });
+      });
 
 
 });
