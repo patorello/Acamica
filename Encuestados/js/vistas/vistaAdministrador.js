@@ -11,6 +11,16 @@ var VistaAdministrador = function(modelo, controlador, elementos) {
   this.modelo.preguntaAgregada.suscribir(function() {
     contexto.reconstruirLista();
   });
+  this.modelo.preguntaRemovida.suscribir(function() {
+    contexto.reconstruirLista();
+  });
+  this.modelo.preguntaEditada.suscribir(function() {
+    contexto.reconstruirLista();
+  });
+  this.modelo.preguntasRemovidas.suscribir(function() {
+    contexto.reconstruirLista();
+  });
+  
 };
 
 
@@ -18,12 +28,18 @@ VistaAdministrador.prototype = {
   //lista
   inicializar: function() {
     //llamar a los metodos para reconstruir la lista, configurar botones y validar formularios
+    this.reconstruirLista();
+    this.configuracionDeBotones();
     validacionDeFormulario();
   },
 
   construirElementoPregunta: function(pregunta){
     var contexto = this;
-    var nuevoItem;
+    var nuevoItem = $(document.createElement("li")).attr({
+      class: "list-group-item",
+      id: pregunta.id,
+      texto: pregunta.textoPregunta
+    });
     //completar
     //asignar a nuevoitem un elemento li con clase "list-group-item", id "pregunta.id" y texto "pregunta.textoPregunta"
     var interiorItem = $('.d-flex');
@@ -56,11 +72,31 @@ VistaAdministrador.prototype = {
 
       $('[name="option[]"]').each(function() {
         //completar
+        respuestas.push({
+          textoRespuesta: $(this).val(),
+          cantidadPorRespuesta: 0
+        });
       })
+      respuestas.splice(respuestas.length - 1);
       contexto.limpiarFormulario();
       contexto.controlador.agregarPregunta(value, respuestas);
     });
+
     //asociar el resto de los botones a eventos
+    e.botonBorrarPregunta.click(function(pregunta) {
+      var id = parseInt($(".list-group-item.active").attr("id"));
+      contexto.controlador.removerPregunta(id);
+    });
+
+    e.botonEditarPregunta.click(function() {
+      var textoEditado = prompt("Ingrese nueva pregunta: ");
+      var id = parseInt($(".list-group-item.active").attr("id"));
+      contexto.controlador.editarPregunta(id,textoEditado);
+    });
+
+    e.borrarTodo.click(function() {
+      contexto.controlador.borrarTodas();
+    });
   },
 
   limpiarFormulario: function(){

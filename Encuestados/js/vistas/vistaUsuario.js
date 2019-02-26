@@ -11,6 +11,18 @@ var VistaUsuario = function(modelo, controlador, elementos) {
   this.modelo.preguntaAgregada.suscribir(function() {
     contexto.reconstruirLista();
   });
+  this.modelo.votoSumado.suscribir(function() {
+    contexto.reconstruirGrafico();
+  });
+  this.modelo.preguntaRemovida.suscribir(function() {
+    contexto.reconstruirLista();
+  });
+  this.modelo.preguntaEditada.suscribir(function() {
+    contexto.reconstruirLista();
+  });
+  this.modelo.preguntasRemovidas.suscribir(function() {
+    contexto.reconstruirLista();
+  });
 };
 
 VistaUsuario.prototype = {
@@ -32,35 +44,40 @@ VistaUsuario.prototype = {
     var contexto = this;
     //obtiene las preguntas del local storage
     var preguntas = this.modelo.preguntas;
-    preguntas.forEach(function(clave){
-      var listaParaGrafico = [[clave.textoPregunta, 'Cantidad']];
+    preguntas.forEach(function(clave) {
+      var listaParaGrafico = [[clave.textoPregunta, "Cantidad"]];
       var respuestas = clave.cantidadPorRespuesta;
-      respuestas.forEach (function(elemento) {
-        listaParaGrafico.push([elemento.textoRespuesta,elemento.cantidad]);
+      respuestas.forEach(function(elemento) {
+        listaParaGrafico.push([elemento.textoRespuesta, elemento.cantidadPorRespuesta]);
       });
       contexto.dibujarGrafico(clave.textoPregunta, listaParaGrafico);
-    })
+    });
   },
 
 
   reconstruirLista: function() {
     var listaPreguntas = this.elementos.listaPreguntas;
-    listaPreguntas.html('');
+    listaPreguntas.html("");
     var contexto = this;
     var preguntas = this.modelo.preguntas;
-    preguntas.forEach(function(clave){
+    preguntas.forEach(function(clave) {
       //completar
       //agregar a listaPreguntas un elemento div con valor "clave.textoPregunta", texto "clave.textoPregunta", id "clave.id"
+      listaPreguntas.append(
+        $(document.createElement("div"))
+          .attr({ value: clave.textoPregunta, id: clave.id })
+          .html(clave.textoPregunta)
+      );
       var respuestas = clave.cantidadPorRespuesta;
-      contexto.mostrarRespuestas(listaPreguntas,respuestas, clave);
-    })
+      contexto.mostrarRespuestas(listaPreguntas, respuestas, clave);
+    });
   },
 
   //muestra respuestas
-  mostrarRespuestas:function(listaPreguntas,respuestas, clave){
+  mostrarRespuestas:function(listaPreguntas, respuestas, clave){
     respuestas.forEach (function(elemento) {
-      listaPreguntas.append($('<input>', {
-        type: 'radio',
+      listaPreguntas.append($("<input>", {
+        type: "radio",
         value: elemento.textoRespuesta,
         name: clave.id,
       }));
@@ -71,16 +88,19 @@ VistaUsuario.prototype = {
     });
   },
 
-  agregarVotos: function(){
+  agregarVotos: function() {
     var contexto = this;
-    $('#preguntas').find('div').each(function(){
-        var nombrePregunta = $(this).attr('value');
-        var id = $(this).attr('id');
-        var respuestaSeleccionada = $('input[name=' + id + ']:checked').val();
-        $('input[name=' + id + ']').prop('checked',false);
-        contexto.controlador.agregarVoto(nombrePregunta,respuestaSeleccionada);
+    $("#preguntas")
+      .find("div")
+      .each(function() {
+        var nombrePregunta = $(this).attr("value");
+        var id = $(this).attr("id");
+        var respuestaSeleccionada = $("input[name=" + id + "]:checked").val();
+        $("input[name=" + id + "]").prop("checked", false);
+        contexto.controlador.agregarVoto(nombrePregunta, respuestaSeleccionada);
       });
   },
+
 
   dibujarGrafico: function(nombre, respuestas){
     var seVotoAlgunaVez = false;
